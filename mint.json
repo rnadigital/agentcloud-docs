@@ -31,16 +31,16 @@
   },
   "tabs": [
     {
+      "name": "API Reference",
+      "url": "/apidocs/docs"
+    },
+    {
       "name": "Integrations",
       "url": "https://agentcloud.dev/integrations"
     },
     {
       "name": "Blog",
       "url": "https://www.agentcloud.dev/blog"
-    },
-    {
-      "name": "Reference",
-      "url": "/apidocs/docs"
     }
   ],
   "primaryTab": {
