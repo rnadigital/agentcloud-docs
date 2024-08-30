@@ -37,6 +37,10 @@
     {
       "name": "Blog",
       "url": "https://www.agentcloud.dev/blog"
+    },
+    {
+      "name": "Reference",
+      "url": "/apidocs/docs"
     }
   ],
   "primaryTab": {
@@ -46,6 +50,41 @@
   {"source": "/demo-chat-rag-bigquery","destination": "/documentation/guides/demo-chat-rag-bigquery"}
 ],
   "navigation": [
+    {
+      "group": "Reference",
+      "pages": [
+        {
+          "group": "Agents",
+          "pages": [
+            "/apidocs/docs/agents/get--agent",
+            "/apidocs/docs/agents/get--agents",
+            "/apidocs/docs/agents/add--agent",
+            "/apidocs/docs/agents/edit--agent",
+            "/apidocs/docs/agents/delete--agent"
+          ]
+        },
+        {
+          "group": "Tasks",
+          "pages": [
+            "/apidocs/docs/tasks/get--task",
+            "/apidocs/docs/tasks/get--tasks",
+            "/apidocs/docs/tasks/add--task",
+            "/apidocs/docs/tasks/edit--task",
+            "/apidocs/docs/tasks/delete--task"
+          ]
+        },
+        {
+          "group": "Tools",
+          "pages": [
+            "/apidocs/docs/tools/get--tool",
+            "/apidocs/docs/tools/get--tools",
+            "/apidocs/docs/tools/add--tool",
+            "/apidocs/docs/tools/edit--tool",
+            "/apidocs/docs/tools/delete--tool"
+          ]
+        }
+      ]
+    },    
     {
       "group": "Get Started",
       "pages": [
