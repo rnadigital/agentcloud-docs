@@ -38,7 +38,7 @@
 						}
 					},
 					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
+						"description": "Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
 						"content": {
 							"dynamicResponse":{
                 "schema":{
