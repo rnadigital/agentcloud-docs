@@ -82,6 +82,16 @@
             "/apidocs/docs/tools/edit--tool",
             "/apidocs/docs/tools/delete--tool"
           ]
+        },
+        {
+          "group": "Models",
+          "pages": [
+            "/apidocs/docs/models/get--model",
+            "/apidocs/docs/models/get--models",
+            "/apidocs/docs/models/add--model",
+            "/apidocs/docs/models/edit--model",
+            "/apidocs/docs/models/delete--model"
+          ]
         }
       ]
     },    
