@@ -74,6 +74,7 @@
 			"get": {
         "description": "Retrieve a JSON object of a single agent from agentId and the resourceSlug",
 				"operationId": "agentJson",
+        "summary": "Retrieve Agent",
 				"tags": ["Agents"],
 				"parameters": [
 					{
@@ -143,6 +144,7 @@
 			"post": {
 				"operationId": "addAgentApi",
         "description": "Add a new Agent",
+        "summary": "Add an agent",
 				"tags": ["Agents"],
 				"parameters": [
 					{
@@ -203,6 +205,7 @@
 			"post": {
 				"operationId": "editAgentApi",
         "description": "Add a new Agent",
+        "summary": "Edit An Agent",
 				"tags": ["Agents"],
 				"parameters": [
 					{
@@ -277,6 +280,7 @@
 			"delete": {
 				"operationId": "deleteAgentApi",
         "description": "Delete an agent",
+        "summary": "Delete An Agent",
 				"tags": ["Agents"],
 				"parameters": [
           {
@@ -341,6 +345,7 @@
     "/{resourceSlug}/tasks.json": {
 			"get": {
         "description": "Retrieve a JSON list of all tasks the user has access to",
+        "summary": "Retrieve Tasks",
 				"operationId": "tasksJson",
 				"tags": ["Tasks"],
 				"parameters": [
@@ -404,6 +409,7 @@
      "/{resourceSlug}/task/{taskId}.json": {
 			"get": {
         "description": "Retrieve a JSON object with a singular task to be retrieved by id.",
+        "summary": "Retrieve Task",
 				"operationId": "taskJson",
 				"tags": ["Tasks"],
 				"parameters": [
@@ -477,6 +483,7 @@
     "/{resourceSlug}/forms/task/add": {
 			"post": {
         "description": "Add a new task.",
+        "summary": "Add A New Task",
 				"operationId": "addTaskApi",
 				"tags": ["Tasks"],
 				"parameters": [
@@ -545,7 +552,8 @@
     },
     "/{resourceSlug}/forms/task/{taskId}/edit": {
 			"post": {
-        "description": "Add a new task.",
+        "description": "Edit a task.",
+        "summary": "Edit A Task",
 				"operationId": "addTaskApi",
 				"tags": ["Tasks"],
 				"parameters": [
@@ -624,6 +632,7 @@
     "/{resourceSlug}/forms/task/{taskId}": {
 			"delete": {
 				"operationId": "deleteTaskApi",
+        "summary": "Delete A Task",
         "description": "Delete a task",
 				"tags": ["Tasks"],
 				"parameters": [
@@ -689,6 +698,7 @@
     "/{resourceSlug}/tools.json": {
 			"get": {
         "description": "Retrieve a JSON list of all tools the user has access to",
+        "summary": "Retrieve Tools",
 				"operationId": "toolsJson",
 				"tags": ["Tools"],
 				"parameters": [
@@ -752,6 +762,7 @@
     "/{resourceSlug}/tool/{toolId}.json": {
 			"get": {
         "description": "Retrieve a JSON object of a single tool from toolId and the resourceSlug",
+        "summary": "Retrieve Tool",
 				"operationId": "toolJson",
 				"tags": ["Tools"],
 				"parameters": [
@@ -821,6 +832,7 @@
   "/{resourceSlug}/forms/tool/add": {
     "post": {
       "operationId": "addToolApi",
+      "summary": "Add A New Tool",
       "description": "Add a new tool to the specified team.",
       "tags": ["Tools"],
       "parameters": [
@@ -892,6 +904,7 @@
     "/{resourceSlug}/forms/tool/{toolId}/edit": {
     "post": {
       "operationId": "editToolApi",
+      "summary": "Edit A Tool",
       "description": "Edit an existing tool by its ID within the specified team.",
       "tags": ["Tools"],
       "parameters": [
@@ -972,6 +985,7 @@
       "/{resourceSlug}/forms/tool/{toolId}": {
       "delete": {
         "operationId": "deleteToolApi",
+        "summary": "Delete A Tool",
         "description": "Delete a tool by its ID within the specified team.",
         "tags": ["Tools"],
         "parameters": [
@@ -1041,6 +1055,7 @@
     "/{resourceSlug}/models.json": {
       "get": {
         "operationId": "getModelsJson",
+        "summary": "Retrieve Models",
         "description": "Retrieve a JSON list of all models the user has access to within the specified team.",
         "tags": ["Models"],
         "parameters": [
@@ -1094,6 +1109,7 @@
     "/{resourceSlug}/model/{modelid}.json": {
       "get": {
         "operationId": "getModelJson",
+        "summary": "Retrieve Model",
         "description": "Retrieve a JSON object of a single model within the specified team by modelId.",
         "tags": ["Models"],
         "parameters": [
@@ -1153,6 +1169,7 @@
     "/{resourceSlug}/forms/model/add": {
       "post": {
         "operationId": "addModelApi",
+        "summary": "Add A New Model",
         "description": "Add a new model to the specified team.",
         "tags": ["Models"],
         "parameters": [
@@ -1224,6 +1241,7 @@
     "/{resourceSlug}/forms/{modelId}/edit": {
       "post": {
         "operationId": "editModelApi",
+        "summary": "Edit A Model",
         "description": "Edit an existing model by its ID within the specified team.",
         "tags": ["Models"],
         "parameters": [
@@ -1304,6 +1322,7 @@
     "/{resourceSlug}/forms/{modelId}": {
       "delete": {
         "operationId": "deleteModelApi",
+        "summary": "Delete A Model",
         "description": "Delete a model by its ID within the specified team.",
         "tags": ["Models"],
         "parameters": [
@@ -1373,6 +1392,7 @@
     "/{resourceSlug}/datasources.json": {
       "get": {
         "operationId": "datasourcesJson",
+        "summary": "Retrieve Datasources",
         "description": "Retrieve a JSON list of all Datasources the user has access to within the specified team.",
         "tags": ["Datasources"],
         "parameters": [
@@ -1438,6 +1458,7 @@
     "/{resourceSlug}/datasource/{datasourceId}.json": {
       "get": {
         "operationId": "datasourceJson",
+        "summary": "Retrieve A Datasource",
         "description": "Retrieve a JSON object of a single model within the specified team by modelId.",
         "tags": ["Datasources"],
         "parameters": [
@@ -1510,6 +1531,7 @@
 			"post": {
         "description": "Test a new datasource. This is required to gather the datasource schema, tables and values to continue to the next stage of addition. This MUST be executed first when adding a new datasource",
 				"operationId": "testDatasourceApi",
+        "summary": "Test A Datasource To Be Added",
 				"tags": ["Datasources"],
 				"parameters": [
 					{
@@ -1627,6 +1649,7 @@
 			"post": {
         "description": "Second stage of adding Datasource (check test datasource for the first step), this connects the datasource to a vectordb, creates a connection between the datasource and airbyte, starts a job to synchronise the rows and finally creates a tool for the datasource. A tool for the datasource is required as within agents a datasource is used as a 'tool' just the same as any other tool, this is required for the 'RAG' process.",
 				"operationId": "addDatasourceApi",
+        "summary": "Add A Datasource",
 				"tags": ["Datasources"],
 				"parameters": [
 					{
@@ -1695,7 +1718,8 @@
     "/{resourceSlug}/forms/datasource/{datasourceId}/schedule": {
 			"post": {
         "description": "TODO: UNFINISHED DOCUMENTATION",
-				"operationId": "addDatasourceApi",
+				"operationId": "scheduleDatasourceApi",
+        "summary": "Edit Schedule In Datasource - This is marked as Uncomplete",
 				"tags": ["Datasources"],
 				"parameters": [
 					{
@@ -1764,7 +1788,8 @@
     "/{resourceSlug}/forms/datasource/{datasourceId}/streams": {
 			"post": {
         "description": "TODO: UNFINISHED DOCUMENTATION",
-				"operationId": "addDatasourceApi",
+				"operationId": "editDatasourceStreamsApi",
+        "summary": "Edit Datasource Streams - This Is Marked As Unfinished",
 				"tags": ["Datasources"],
 				"parameters": [
 					{
@@ -1833,7 +1858,8 @@
     "/{resourceSlug}/forms/datasource/{datasourceId}/sync": {
 			"post": {
         "description": "Initialise an Airbyte synchronisation for an existing datasource object",
-				"operationId": "addDatasourceApi",
+				"operationId": "syncDatasourceApi",
+        "summary": "Sync Datasource",
 				"tags": ["Datasources"],
 				"parameters": [
 					{
@@ -2112,7 +2138,7 @@
 			"get": {
         "description": "Retrieve a JSON list of all sessions the user has access to. Will also return a list of all tasks, tools, agents, models and datasources as a front end helper",
         "summary": "Retrieve Sessions",
-				"operationId": "appsJson",
+				"operationId": "sessionsJson",
 				"tags": ["Sessions"],
 				"parameters": [
 					{
