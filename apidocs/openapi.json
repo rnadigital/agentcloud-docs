@@ -9,7 +9,7 @@
 		"/{resourceSlug}/agents.json": {
 			"get": {
         "description": "Retrieve a JSON list of all agents the user has access to",
-        "summary": "Get Agents",
+        "summary": "Retrieve Agents",
 				"operationId": "agentsJson",
 				"tags": ["Agents"],
 				"parameters": [
@@ -38,7 +38,7 @@
 						}
 					},
 					"403": {
-						"description": "Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
+						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
 						"content": {
 							"dynamicResponse":{
                 "schema":{
@@ -1091,7 +1091,7 @@
         }
       }
     },
-    "/{resourceSlug}/model.json": {
+    "/{resourceSlug}/model/{modelid}.json": {
       "get": {
         "operationId": "getModelJson",
         "description": "Retrieve a JSON object of a single model within the specified team by modelId.",
@@ -1108,7 +1108,7 @@
           },
           {
             "name": "modelId",
-            "in": "query",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string"
@@ -1369,6 +1369,1186 @@
           }
         }
       }
+    },
+    "/{resourceSlug}/datasources.json": {
+      "get": {
+        "operationId": "datasourcesJson",
+        "description": "Retrieve a JSON list of all Datasources the user has access to within the specified team.",
+        "tags": ["Datasources"],
+        "parameters": [
+          {
+            "name": "resourceSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The resourceSlug is a URL parameter of the teamId associated with the user."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON object containing an array of all the models and datasources associated with that teamId. Will return empty arrays if the request is successful but there is no associated results for that teamId.",
+            "content": {
+              "models.json": {
+                "schema": {
+                  "properties": {
+                    "datasources":{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Datasource"
+                      },
+                      "description": "An array object of all the datasources the user has access to"
+                    },
+                    "models" :{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Model"
+                      },
+                      "description": "An array object of all models the user has access to, this is used to identify the embedding model of the datasource and to have a list of all available embedding models to allow for easy modification of the selected embedding model."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to access models outside the permissions of the team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{resourceSlug}/datasource/{datasourceId}.json": {
+      "get": {
+        "operationId": "datasourceJson",
+        "description": "Retrieve a JSON object of a single model within the specified team by modelId.",
+        "tags": ["Datasources"],
+        "parameters": [
+          {
+            "name": "resourceSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The resourceSlug is a URL parameter of the teamId associated with the user."
+          },
+          {
+            "name": "datasourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the datasource to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON object containing the retrieved datasource and all models associated with the resourceSlug teamId.",
+            "content": {
+              "models.json": {
+                "schema": {
+                  "properties": {
+                    "datasource":{
+                        "$ref": "#/components/schemas/Datasource",
+                      "description": "JSON object of the datasource retrieved by the operation"
+                    },
+                    "models" :{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Model"
+                      },
+                      "description": "An array object of all models the user has access to, this is used to identify the embedding model of the datasource and to have a list of all available embedding models to allow for easy modification of the selected embedding model."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to access a datasource outside the permissions of the team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error, check error message for more info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{resourceSlug}/forms/datasource/test": {
+			"post": {
+        "description": "Test a new datasource. This is required to gather the datasource schema, tables and values to continue to the next stage of addition. This MUST be executed first when adding a new datasource",
+				"operationId": "testDatasourceApi",
+				"tags": ["Datasources"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "requestBody",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "properties": {
+                "connectorId":{
+                  "type": "string",
+                  "description": "The type of datasource being pulled from, the full list of supported sources and their corresponding in JSON format can be found at: 'https://connectors.airbyte.com/files/generated_reports/connector_registry_report.json'. One of these connectors must be selected as the type of datasource to pull from. Insert the Id of the connector in this field"
+                },
+                "datasourceName":{
+                  "type": "string",
+                  "description": "Arbitary name for the datasource, this doesn't need to follow any specific convention, can simply be any name to identify it."
+                },
+                "datasourceDescription":{
+                  "type": "string",
+                  "description": "Description for the datasource, this is used when fetching the datasources on 'datasourcesJson' to briefly describe what each datasource is from/contains."
+                },
+                "sourceConfig":{
+                  "description": "sourceConfig is defined by Airbyte to determine the config required to set up the datasource with Airbyte. See the docs at: 'https://reference.airbyte.com/reference/createsource' for more information. See the 'configuration' body params and find the source that you are using."
+                },
+                "timeUnit":{
+                  "type": "string",
+                  "description": "Used to indicate howoften the datasource is synced, this syncing is to ensure the data within Agent Cloud is synchronised with the data within the datasource. This is the period between each synchronisation. The specific number of each period is set later in the addition process (i.e. when using addDatasourceApi).",
+                  "enum": [
+                    "minute",
+                    "hour",
+                    "day",
+                    "week",
+                    "month"
+                  ]
+                }
+              }
+            },
+            "description": "Task object to be added with at minimum all required fields, _id must be ommited, this will be generated by the api and returned upon successful completion."
+          }
+				],
+				"responses": {
+					"200": {
+						"description": "Successfully tested the datasource and validated it's configuration for Airbyte, can now move onto the addDatasourceApi route",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/dynamicResponse"
+                    },
+                    {
+                      "properties":{
+                        "discoveredSchema":{
+                          "type": "object",
+                          "description": "This return is mainly used for front end operations of Agent Cloud, it is an Airbyte object found here: 'https://airbyte-public-api-docs.s3.us-east-2.amazonaws.com/rapidoc-api-docs.html#post-/v1/sources/discover_schema'"
+                        },
+                        "streamProperties":{
+                          "type": "object",
+                          "description": "This is an Airbyte object used to describe the stream between the datasource and Agent Cloud, it holds the properties of it, more information can be found on the Airbyte Reference here: 'https://reference.airbyte.com/reference/getstreamproperties'"
+                        },
+                        "sourceId": {
+                          "type": "string",
+                          "description": "When Airbyte creates the new source it creates a unique UUID for it for within Airbyte, this UUID is returned form Airbyte and also returned from this API call."
+                        }
+                      }
+                    }
+                  ]
+                }
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid Permissions on the resourceSlug.",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error when testing validity of datasource, check the error message to see specifically what validation failed.",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/forms/datasource/add": {
+			"post": {
+        "description": "Second stage of adding Datasource (check test datasource for the first step), this connects the datasource to a vectordb, creates a connection between the datasource and airbyte, starts a job to synchronise the rows and finally creates a tool for the datasource. A tool for the datasource is required as within agents a datasource is used as a 'tool' just the same as any other tool, this is required for the 'RAG' process.",
+				"operationId": "addDatasourceApi",
+				"tags": ["Datasources"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "datasource",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Datasource"
+            },
+            "description": "Datasource object that was created when testDatasourceApi is run, must include datasourceId."
+          }
+				],
+				"responses": {
+					"302": {
+						"description": "Successful operation, redirect to '/{resourceSlug}/datasources'. Returns added toolId in return body",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+                 "$ref": "#/components/schemas/tempRedirectResponse"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error validating datasource, check error message for more information.",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/forms/datasource/{datasourceId}/schedule": {
+			"post": {
+        "description": "TODO: UNFINISHED DOCUMENTATION",
+				"operationId": "addDatasourceApi",
+				"tags": ["Datasources"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "datasource",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Datasource"
+            },
+            "description": "Datasource object that was created when testDatasourceApi is run, must include datasourceId."
+          }
+				],
+				"responses": {
+					"302": {
+						"description": "Successful operation, redirect to '/{resourceSlug}/datasources'. Returns added toolId in return body",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+                 "$ref": "#/components/schemas/tempRedirectResponse"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error validating datasource, check error message for more information.",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/forms/datasource/{datasourceId}/streams": {
+			"post": {
+        "description": "TODO: UNFINISHED DOCUMENTATION",
+				"operationId": "addDatasourceApi",
+				"tags": ["Datasources"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "datasource",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Datasource"
+            },
+            "description": "Datasource object that was created when testDatasourceApi is run, must include datasourceId."
+          }
+				],
+				"responses": {
+					"302": {
+						"description": "Successful operation, redirect to '/{resourceSlug}/datasources'. Returns added toolId in return body",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+                 "$ref": "#/components/schemas/tempRedirectResponse"
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error validating datasource, check error message for more information.",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/forms/datasource/{datasourceId}/sync": {
+			"post": {
+        "description": "Initialise an Airbyte synchronisation for an existing datasource object",
+				"operationId": "addDatasourceApi",
+				"tags": ["Datasources"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "datasource",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Datasource"
+            },
+            "description": "Datasource object that was created when testDatasourceApi is run, must include datasourceId."
+          }
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation, no redirect and no body",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error validating datasource, check error message for more information.",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/apps.json": {
+			"get": {
+        "description": "Retrieve a JSON list of all apps the user has access to. Will also return a list of all tasks, tools, agents, models and datasources as a front end helper",
+        "summary": "Get Apps",
+				"operationId": "appsJson",
+				"tags": ["Apps"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "JSON object containing an array of all the associated agents with that teamId, will return an empty array if the request is successful but there are no associated agents.",
+						"content": {
+							"apps.json": {
+								"schema": {
+                  "properties": {
+                    "csrf":{
+                      "type": "string",
+                      "description": "cross site token"
+                    },
+                    "apps": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Agent"
+                      }
+                    },
+                    "tasks":{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    },
+                    "tools":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Tool"
+                      }
+                    },
+                    "agents":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Agent"
+                      }
+                    },
+                    "models":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Model"
+                      }
+                    },
+                    "datasources":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Datasource"
+                      }
+                    }
+                  }
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error in validation, check error message for more information",
+            "content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/app/{appId}.json": {
+			"get": {
+        "description": "Retrieve a JSON object of the retrieved app. Will also return a list of all tasks, tools, agents, models and datasources as a front end helper",
+        "summary": "Get App",
+				"operationId": "appJson",
+				"tags": ["Apps"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "appId",
+            "in": "path",
+            "required": true,
+            "schema":{
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The appId of the app to be retrieved"
+          }
+				],
+				"responses": {
+					"200": {
+						"description": "JSON object containing the app with that teamId, will return an empty array if the request is successful but there are no associated agents.",
+						"content": {
+							"apps.json": {
+								"schema": {
+                  "properties": {
+                    "csrf":{
+                      "type": "string",
+                      "description": "cross site token"
+                    },
+                    "app": {
+                        "$ref": "#/components/schemas/Agent"
+                    },
+                    "tasks":{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    },
+                    "tools":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Tool"
+                      }
+                    },
+                    "agents":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Agent"
+                      }
+                    },
+                    "models":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Model"
+                      }
+                    },
+                    "datasources":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Datasource"
+                      }
+                    }
+                  }
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error in validation, check error message for more information",
+            "content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/sessions.json": {
+			"get": {
+        "description": "Retrieve a JSON list of all sessions the user has access to. Will also return a list of all tasks, tools, agents, models and datasources as a front end helper",
+        "summary": "Retrieve Sessions",
+				"operationId": "appsJson",
+				"tags": ["Sessions"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "JSON object containing an array of all the associated agents with that teamId, will return an empty array if the request is successful but there are no associated agents.",
+						"content": {
+							"apps.json": {
+								"schema": {
+                  "properties": {
+                    "csrf":{
+                      "type": "string",
+                      "description": "cross site token"
+                    },
+                    "sessions":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/Session"
+                      },
+                      "description": "Array of all sessions the given teamId has permissions for"
+                    }
+                  }
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error in validation, check error message for more information",
+            "content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/session/{sessionId}.json": {
+			"get": {
+        "description": "Retrieve a JSON object of the session from path sessionId. Will also return a list of all tasks, tools, agents, models and datasources as a front end helper",
+        "summary": "Retrieve Session",
+				"operationId": "sessionJson",
+				"tags": ["Sessions"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema":{
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The sessionId of the session to retrieve"
+          }
+				],
+				"responses": {
+					"200": {
+						"description": "JSON object the session associated with the given sessionId, will return an empty array if the request is successful but there are no associated agents.",
+						"content": {
+							"session.json": {
+								"schema": {
+                  "properties": {
+                    "csrf":{
+                      "type": "string",
+                      "description": "cross site token"
+                    },
+                    "session":{
+                      "$ref": "#/components/schemas/Session",
+                      "description": "Session Object returned for the given sessionId"
+                    }
+                  }
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error in validation, check error message for more information",
+            "content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/session/{sessionId}/messages.json": {
+			"get": {
+        "description": "Get all messages associated to the path sessionId",
+        "summary": "Retrieve Messages",
+				"operationId": "sessionMessagesJson",
+				"tags": ["Sessions"],
+				"parameters": [
+					{
+						"name": "resourceSlug",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ObjectId"
+						},
+						"description": "The resourceSlug is a url parameter of the teamId associated with the user. Anywhere the resourceSlug is used can be interpreted as a teamId"
+					},
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema":{
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The sessionId of the session to retrieve"
+          }
+				],
+				"responses": {
+					"200": {
+						"description": "JSON object containing array of all associated messages from this session, will return an empty array if the request is successful but there are no associated agents.",
+						"content": {
+							"messages.json": {
+								"schema": {
+                  "properties": {
+                    "messages":{
+                      "type":"array",
+                      "items":{
+                        "$ref": "#/components/schemas/ChatMessage"
+                      },
+                      "description": "Array of all message objects within this session"
+                    }
+                  }
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					},
+          "400": {
+            "description": "Error in validation, check error message for more information",
+            "content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+          },
+					"500": {
+						"description": "Internal error",
+						"content": {
+							"dynamicResponse":{
+                "schema":{
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+						}
+					}
+				}
+			}
+    },
+    "/{resourceSlug}/forms/session/add": {
+      "post": {
+        "operationId": "addSessionApi",
+        "summary": "Add a session",
+        "description": "Create a new chat session from the parameter appId",
+        "tags": ["Sessions"],
+        "parameters": [
+          {
+            "name": "resourceSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The resourceSlug is a URL parameter of the teamId associated with the user."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "req.json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObjectId"
+              }
+            }
+          },
+          "description": "JSON body containing appId of the app to use for this session."
+        },
+        "responses": {
+					"302": {
+						"description": "Successful operation, redirect to '/{resourceSlug}/session/{sessionId}'. Redirect field contains path to the newly created session to initialise app.",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+                  "$ref": "#/components/schemas/tempRedirectResponse"
+								}
+							}
+						}
+					},
+          "400": {
+            "description": "Validation error or missing required fields.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to add a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{resourceSlug}/forms/session/{sessionId}/cancel": {
+      "post": {
+        "operationId": "cancelSessionApi",
+        "summary": "Cancel a session",
+        "description": "Cancel a session by Id, best practice to cancel a session once it has completed. The session and it's associated fields will still exist within the database under the same sessionId. The session can be completley removed from the database using the delete route AFTER this has been executed.",
+        "tags": ["Sessions"],
+        "parameters": [
+          {
+            "name": "resourceSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The resourceSlug is a URL parameter of the teamId associated with the user."
+          },
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The ID of the session to be cancelled."
+          }
+        ],
+        "responses": {
+					"302": {
+						"description": "Successful operation, redirect to '/{resourceSlug}/models'. (this needs to be modified to correctly display dynamicResponse)",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+                  "$ref": "#/components/schemas/tempRedirectResponse"
+								}
+							}
+						}
+					},
+          "400": {
+            "description": "Invalid modelId provided or model does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{resourceSlug}/forms/session/{sessionId}": {
+      "delete": {
+        "operationId": "deleteSessionApi",
+        "description": "Delete a session by Id.",
+        "summary": "Delete a session",
+        "tags": ["Sessions"],
+        "parameters": [
+          {
+            "name": "resourceSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The resourceSlug is a URL parameter of the teamId associated with the user."
+          },
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "description": "The ID of the session to be deleted."
+          }
+        ],
+        "responses": {
+					"302": {
+						"description": "Successful operation, redirect to '/{resourceSlug}/models'. (this needs to be modified to correctly display dynamicResponse)",
+						"content": {
+							"dynamicResponse": {
+								"schema": {
+                  "$ref": "#/components/schemas/tempRedirectResponse"
+								}
+							}
+						}
+					},
+          "400": {
+            "description": "Invalid modelId provided or model does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dynamicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1396,6 +2576,176 @@
           "redirect":{
             "type": "string",
             "description": "a string containing the redirect link to get all objects after a successful insertion."
+          }
+        }
+      },
+      "Session":{
+        "description": "Session object used when a chat app is running",
+        "required": [
+          "orgId",
+          "teamId",
+          "name",
+          "startDate",
+          "lastUpdatedDate",
+          "tokensUsed",
+          "status",
+          "sharingConfig"
+        ],
+        "properties": {
+          "_id":{
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "orgId":{
+            "$ref": "#/components/schemas/ObjectId",
+            "description": "The id of the organisation that the session belongs to (usually the teamId of the corresponding app object)."
+          },
+          "teamId":{
+            "$ref": "#/components/schemas/ObjectId",
+            "description": "The id object of the team the session belongs to (usually the teamId of the corresponding app object the session stems from)."
+          },
+          "name":{
+            "type": "string",
+            "description": "The name of the session"
+          },
+          "startDate":{
+            "type": "object",
+            "description": "Date object of when the session was started."
+          },
+          "lastUpdatedDate":{
+            "type": "object",
+            "description": "Date object of when the session was last updated."
+          },
+          "tokensUsed":{
+            "type": "integer",
+            "description": "The number of AI tokens used in this session."
+          },
+          "status":{
+            "type": "string",
+            "enum": [
+              "started",
+              "running",
+              "waiting",
+              "warning",
+              "error",
+              "terminated"
+            ],
+            "description": "The cuurent state of the session"
+          },
+          "appId":{
+            "$ref": "#/components/schemas/ObjectId",
+            "description": "The appId of the app that the session is running"
+          },
+          "previewLabel":{
+            "type": "string",
+            "description": "Label to show when previewing the session"
+          },
+          "sharingConfig":{
+            "$ref": "#/components/schemas/SharingConfig"
+          }
+        }
+      },
+      "ChatMessage":{
+        "description": "A message used within a session, can be either an AI generated message or a user generated message.",
+        "required": [
+          "orgId",
+          "teamId",
+          "sessionId",
+          "message",
+          "ts",
+          "authorId",
+          "isFeedback",
+          "displayType",
+          "authorName"
+        ],
+        "properties": {
+          "_id":{
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "orgId":{
+            "$ref": "#/components/schemas/ObjectId",
+            "description": "The id of the organisation that the session belongs to (usually the teamId of the corresponding app object)."
+          },
+          "teamId":{
+            "$ref": "#/components/schemas/ObjectId",
+            "description": "The id object of the team the session belongs to (usually the teamId of the corresponding app object the session stems from)."
+          },
+          "sessionId":{
+            "$ref": "#/components/schemas/ObjectId",
+            "description":"The id of the session object the message exists within"
+          },
+          "chunkId":{
+            "type": "string",
+            "description": "Unique identifier for the chunk associated with this message, leave blank."
+          },
+          "message":{
+            "type": "object",
+            "description": "Can be of any type, the message content"
+          },
+          "ts":{
+            "type": "integer",
+            "description": "UNIX timestamp, equivelant to Date.now() of message creation"
+          },
+          "authorId":{
+            "$ref": "#/components/schemas/ObjectId",
+            "description": "If the message is sent by an agent, this is set to null, if sent by a user then it is set to the accountId"
+          },
+          "isFeedback":{
+            "type": "boolean",
+            "description": "Set by the agent, when set to 'trye' the agent is expecting human input"
+          },
+          "displayType":{
+            "type": "string",
+            "enum": [
+              "bubble",
+              "inline"
+            ],
+            "description": "The display type of the message, only used in front end"
+          },
+          "authorName":{
+            "type": "string",
+            "description":"The name of the message author, if sent by an agent then set to the agent's name otherwise set to account name"
+          },
+          "tokens":{
+            "type": "integer",
+            "description": "Tokens used in this message"
+          },
+          "chunks":{
+            "type": "array",
+            "items": {
+              "properties":{
+                "ts":{
+                  "type":"integer",
+                  "description":"Timestamp"
+                },
+                "chunk":{
+                  "type":"string",
+                  "description":"Chunk content"
+                },
+                "tokens":{
+                  "type":"integer",
+                  "description":"Tokens used in this chunk"
+                }
+              }
+            }
+          },
+          "codeBlocks":{
+            "type": "array",
+            "items":{
+              "properties": {
+                "language":{
+                  "type": "string",
+                  "description": "The language the code block is written in"
+                },
+                "codeBlock":{
+                  "type": "string",
+                  "description": "Content of the code block"
+                }
+              }
+            }
+          },
+          "completed":{
+            "type": "boolean",
+            "description": "Wether the message is completed or still generating"
           }
         }
       },
