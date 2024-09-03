@@ -36,24 +36,6 @@ Learn how to get Agent Cloud running locally via Docker.
         chmod +x install.sh && ./install.sh
         ```
 
-        The script will prompt for some details, or you can pass them as command line arguments:
-
-        ```
-        ~$ ./install.sh --help
-        Usage: ./install.sh [options]
-        Options:
-        --project-id ID                  Specify the GCP project ID.
-        --service-account-json PATH      Specify the file path of your GCP service account json.
-        --gcs-bucket-name NAME           Specify the GCS bucket name to use.
-        --gcs-bucket-location LOCATION   Specify the GCS bucket location.
-        -h, --help                       Display this help message.
-        ```
-
-        Here is a sample you can use to fill in the blanks
-        ```
-        ./install.sh --project-id [INSERT PROJECT ID HERE] --service-account-json [GENERATE A SERVICE ACCOUNT IN GCP AND INSERT LOCAL PATH TO KEYFILE JSON PATH] --gcs-bucket-name [INSERT A GCP BUCKET NAME] --gcs-bucket-location [INSERT A GCP LOCATION E.G. US-CENTRAL1] --openai-api-key [INSERT KEY SK-.......]
-        ```
-
     </Accordion>
     <Accordion icon="desktop" title="Go to localhost:3000">
         Once all the Docker containers are running, enter your browser and go to http://localhost:3000.
