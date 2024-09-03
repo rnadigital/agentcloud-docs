@@ -15,6 +15,11 @@
       "to": "#82aff0"
     }
   },
+  "api": {
+    "auth": {
+        "method": "bearer"
+    }
+  },
   "topbarLinks": [
     {
       "name": "Home Page",
