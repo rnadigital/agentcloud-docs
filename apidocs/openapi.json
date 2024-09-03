@@ -7,12 +7,17 @@
   },
   "servers": [
     {
-      "url": "https://api.agentcloud.dev",
+      "url": "https://app.agentcloud.dev",
       "description": "Use our public api endpoints!"
     },
     {
-      "url": "http://localhost:3000",
-      "description": "Test the endpoints on your own instance of Agent Cloud!"
+      "url": "{custom_url}",
+      "description": "Test the endpoints on your own instance of Agent Cloud!",
+      "variables": {
+        "custom_url":{
+          "default": "https://app.agentcloud.dev"
+        }
+      }
     }
   ],
 	"paths": {
@@ -2859,14 +2864,7 @@
       },
       "ObjectId": {
         "description": "Mongodb Object id, unique identifier, length of 24 characters fitting the following regex; [a-f0-9]{24}",
-        "required": [
-          "_id"
-        ],
-        "properties": {
-          "_id":{
-           "type": "string"
-          }
-        }
+        "type": "string"
       },
       "Agent": {
         "description": "An agent object used for tasks or apps",
