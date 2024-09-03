@@ -5,6 +5,16 @@
     "description": "The API docs for Agentcloud's webapp.",
     "version": "0.2.1"
   },
+  "servers": [
+    {
+      "url": "https://api.agentcloud.dev",
+      "description": "Use our public api endpoints!"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Test the endpoints on your own instance of Agent Cloud!"
+    }
+  ],
 	"paths": {
 		"/{resourceSlug}/agents.json": {
 			"get": {
@@ -4769,6 +4779,13 @@
             "format": "date-time"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth":{
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   },
