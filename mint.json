@@ -36,10 +36,6 @@
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "apidocs"
-    },
-    {
       "name": "Integrations",
       "url": "https://agentcloud.dev/integrations"
     },
@@ -48,13 +44,10 @@
       "url": "https://www.agentcloud.dev/blog"
     },
     {
-      "name": "Documentation",
-      "url" : "documentation"
+      "name": "API Reference",
+      "url": "apidocs"
     }
   ],
-  "primaryTab": {
-    "name": "Documentation"
-  },
   "redirects": [
   {"source": "/demo-chat-rag-bigquery","destination": "/documentation/guides/demo-chat-rag-bigquery"}
 ],
@@ -181,7 +174,7 @@
             "apidocs/docs/schema/SystemUpdateDetails",
             "apidocs/docs/schema/Task",
             "apidocs/docs/schema/Team",
-            "apidocs/docs/schema/Teamdescription",
+            "apidocs/docs/schema/TeamDescription",
             "apidocs/docs/schema/TeamModelResponse",
             "apidocs/docs/schema/tempRedirectResponse",
             "apidocs/docs/schema/TestDatasourceJSONBody",
