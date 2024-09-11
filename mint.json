@@ -210,12 +210,26 @@
       ]
     },
     {
-      "group": "Guides & Tutorials",
+      "group": "Guides",
       "pages": [
-        "documentation/guides/structure-output",
         {
-          "group": "RAG Examples",
-          "pages": ["documentation/guides/demo-chat-rag-bigquery"]
+          "group": "Agent Cloud Components",
+          "pages": [
+            "documentation/concepts/agents",
+            "documentation/concepts/apps",
+            "documentation/concepts/datasources",
+            "documentation/concepts/models",
+            "documentation/concepts/sessions",
+            "documentation/concepts/tasks",
+            "documentation/concepts/tools",
+            "documentation/concepts/variables"
+          ],
+          "icon": "puzzle"
+        },
+        {
+          "group": "Tutorials With Videos",
+          "pages": ["documentation/guides/demo-chat-rag-bigquery"],
+          "icon": "play-pause"
         }
       ]
     },
