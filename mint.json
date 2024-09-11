@@ -61,19 +61,19 @@
         {
           "group": "Sessions",
           "pages": [
-            "/apidocs/docs/sessions/retrieve--session",
-            "/apidocs/docs/sessions/retrieve--sessions",
-            "/apidocs/docs/sessions/retrieve--messages",
-            "/apidocs/docs/sessions/add--session",
-            "/apidocs/docs/sessions/cancel--session",
-            "/apidocs/docs/sessions/delete--session"
+            "apidocs/docs/sessions/retrieve--session",
+            "apidocs/docs/sessions/retrieve--sessions",
+            "apidocs/docs/sessions/retrieve--messages",
+            "apidocs/docs/sessions/add--session",
+            "apidocs/docs/sessions/cancel--session",
+            "apidocs/docs/sessions/delete--session"
           ]
         },
         {
           "group": "Apps",
           "pages": [
-            "/apidocs/docs/apps/retrieve--app",
-            "/apidocs/docs/apps/retrieve--apps"
+            "apidocs/docs/apps/retrieve--app",
+            "apidocs/docs/apps/retrieve--apps"
           ]
         },
         {
