@@ -4,20 +4,75 @@ icon: "User"
 description: "What are agents in Agent Cloud?"
 ---
 
-Hold up! Have you looked at our [docs](https://docs.agentcloud.dev/documentation/get-started/introduction) yet? We recommend searching the wealth of knowledge in our documentation as many times the answer you are looking for is there!
+Agents are like your own personal GPTs except so much more capable. They're able to gather data from given `datasources`, use that data to pass onto each other and can either chat with a user regarding them or process the data automatically. But agents are best used together, they can be used together inside an [app](/documentation/concepts/apps) to achieve an overall larger goal. Think of an agent as a member of a team, which specific skills and a particular job to do.
+## Agent Components
+Agents are compomised of a few components which will be briefly touched on here but more can be found on their respective pages.
+### 1. System Message
+The system message is the prompt used to initialise the agent. It tells the agent their role, what their skills are and what their goal is.
 
-## Agent Cloud Support
-Running Agent Cloud and have questions that our docs could not clear up?
+<AccordionGroup>
+    <Accordion title = "Role" icon = "address-book">
+        Role <br/>
+        The agent's role defines their function within the crew of agents. This specifies the kind of task the agent is best used for so that when the app is deciding which agent to use for a specific task it can call upon the role to see what it's used for.<br/>
+        Here's an example role for an agent:<br/>
+        >Role for a crew of agents where the overall goal is to analyse a user's PC requirements and reccomend products from that:<br/>
+        >Agent 1: Product Researcher<br/>
+        >Agent 2: Preference analyst<br/>
+        >Agent 3: Product Finder<br/>
+    </Accordion>
 
-Post your questions on our [✋help-and-support](https://discord.gg/nxjCyxrAhu) discord channel and join our community to connect with other Agent Cloud users.
+    <Accordion title = "Goal" icon = "bullseye">
+        Goal <br/>
+        The goal is the individual objective that the agent aims to achieve. It guidess the agent's decision making process and is used to prompt the agent as to their purpose and the task they must accomplish.
+        >Goals for the above mentioned crew:<br/>
+        >**Product Researcher**: Being the best at interpreting and analysing product preferences to surprise customers with products they didn't know they needed.<br/>
+        >**Preference analyst**: Being the best at analysing responses to questions to establish a pattern of product preferences<br/>
+        >**Product Finder**: Being the best at combining product preferences and gathered products to give the customer the best value for money package of products that they need.<br/>
+    </Accordion>
+
+    <Accordion title = "Backstory" icon = "pen">
+        Backstory <br/>
+        The backstory provides context to the agent's role and goal, enriching the interaction and collaboration dynamics. Think of the backstory as a detailed job description.<br/>
+        >Example backstories for the above crew:<br/>
+        >**Product Researcher**: You are the the most experienced researcher to is able to analyse preferences for certain types of products and use those preferences to find out what the customer likes, once you've determined this you find these products in the catalogue.<br/>
+        >**Preference analyst**: You are the most experienced customer analyst, you're able to ask questions to find out what kind of products the customer is looking for and you use the responses to these questions to generate a set of preferences that the customer has for products. <br/>
+        >**Product Finder**: You're the most efficient and accurate analyst at picking out products to combine them into a package for the customer <br/>
+    </Accordion>
+
+</AccordionGroup>
 
 
-## Discord Community
 
-Join our Discord community [here](https://discord.com/invite/ZNSSttKqqq)!
+### 2. Tools <Icon icon = "screwdriver-wrench"/> <br/>
+Tools are a set of capabilities or functions that the agent can use to perform tasks. They can range from web searching and data analysis to collaboration and delegation of tasks among agents. Agent Cloud comes with a range of built in tools, here are a few:
+<Tabs>
+    <Tab title = "Search Wikipedia">
+        This tool takes a string query as input and fetches relevant pages from Wikipedia.<br/>
+        **PUT A VIDEO OF THE TOOL IN ACTION**
+    </Tab>
+    <Tab title = "Search YouTube">
+        This tool takes a string query as input and fetches relevant data from YouTube.<br/>
+        **PUT A VIDEO OF THE TOOL IN ACTION**
+    </Tab>
+    <Tab title = "Search Google (Apify)">
+        This tool takes a string query as input and fetches results from Google.<br/>
+        **PUT A VIDEO OF THE TOOL IN ACTION**<br/>
+        **This tool requires an Apify api token**
+    </Tab>
+</Tabs> <br/>
+See more on the [Tools](/documentation/concepts/tools) page.
 
-<Accordion title="How to get help on discord">
-    Ask your questions first in the #help-and-support channel and if didn't get answer in next 24 hours, reach out to our team members on discord.
+### 3. Datasources <Icon icon = "database"/><br/>
+Datasources are the heart of an Agent Cloud app, it's what sets our agents apart from your generic models. Agents can gather data from datasources to produce a specific output. For example, you can export all of your product data (SKU, product number, description, etc...) into Agent Cloud. Agents can then be used to not only reccomend generic products to the user ("Use an exfoliating hand cream"), but they can reccomend specific products that are stocked by you ("Use an exfoliating hand cream, xyz brand is great and we have it in stock!"). This is where the real power of Agent Cloud can be found.<br/>
+See the [Datasources](/documentation/concepts/tools) page for information on how to set up Datasources.
 
-    If you have a question on enterprise consulting, reach out to our founder Andrew on discord to inquire about Agent Cloud Enterprise.
-</Accordion>
+### 4. Model <Icon icon="microchip"/>
+Simply put, the model is the model the agent uses as it's LLM, this may be [OpenAi's GPT](https://platform.openai.com/docs/models), or [Meta's Llama](https://llama.meta.com). Our platform supports many LLMs from multiple vendors. <br/>
+See more on the [Models](/documentation/concepts/models) page
+
+## Advanced Features
+The following are optional features that aren't neccessary to create an agent or app but they can help with debugging agents or enhancing their capability.
+### 1. Funciton Calling Model
+**TODO: THIS SECTION IS NOT COMPLETE**
+### 2. Verbose
+**TODO: THIS SECTION IS NOT COMPLETE**
