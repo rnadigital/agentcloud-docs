@@ -1,22 +1,49 @@
 ---
 title: "Models"
 icon: "microchip"
+description: "What are Models in Agent Cloud?"
 ---
 
-Hold up! Have you looked at our [docs](https://docs.agentcloud.dev/documentation/get-started/introduction) yet? We recommend searching the wealth of knowledge in our documentation as many times the answer you are looking for is there!
+Models attach to an agent to specify the specific model and provider the agent will be using. Models are also used in Datasources to embed data, to learn more about embedding visit the [Datasources](documentation/concepts/datasources) page.
 
-## Agent Cloud Support
-Running Agent Cloud and have questions that our docs could not clear up?
+<Warning> In short, embedding is the process of turning data of any type into data that agents can process and understand. There are models specific for embedding and these should **not** be used for agents. </Warning>
 
-Post your questions on our [✋help-and-support](https://discord.gg/nxjCyxrAhu) discord channel and join our community to connect with other Agent Cloud users.
+When you first register for the [cloud](https://app.agentcloud.dev/register) platform you will be prompted to configure a simple OpenAI GPT model, if you've already done this then there is no need to configure more unless you intend to use multiple agents.
+## Model Components
+Models don't require much to set up, all that's required is a valid api key for the selected model to allow the platform to access the selected LLM.
 
+### 1. Vendor
+Select your vendor, we support a range of model vendors, select one and configure it accordingly. Different vendors require different configuration for their models. Below is our current list of supported vendors:<br/>
 
-## Discord Community
+<AccordionGroup>
 
-Join our Discord community [here](https://discord.com/invite/ZNSSttKqqq)!
+    <Accordion title = "OpenAI" icon = "">
+        Setup for an OpenAI model is very straightforward, all that's required is a valid OpenAI api key.<br/>
+        These are the following _agent_ compatible models we support:
+        - `gpt-4o-mini`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4o-mini) <br/>
+        - `gpt-4o`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4o)<br/>
+        - `gpt-4-turbo`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4) <br/>
+        - `gpt-4`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4) <br/>
 
-<Accordion title="How to get help on discord">
-    Ask your questions first in the #help-and-support channel and if didn't get answer in next 24 hours, reach out to our team members on discord.
+        These are the following _embedding_ models we support:<br/>
+        - `text-embedding-3-small`. Read more about it [here](https://platform.openai.com/docs/models/embeddings) <br/>
+        - `text-embedding-3-large`. Read more about it [here](https://platform.openai.com/docs/models/embeddings) <br/>
+        - `text-embedding-ada-002`. Read more about it [here](https://platform.openai.com/docs/models/embeddings) <br/>
+    </Accordion>
 
-    If you have a question on enterprise consulting, reach out to our founder Andrew on discord to inquire about Agent Cloud Enterprise.
-</Accordion>
+    <Accordion title = "Azure OpenAI" icon = "microsoft">
+    </Accordion>
+
+    <Accordion title = "Anthropic" icon = "">
+    </Accordion>
+    <Accordion title = "Ollama" icon = "meta">
+    </Accordion>
+    <Accordion title = "FastEmbed" icon = "">
+    </Accordion>
+    <Accordion title = "Groq" icon = "">
+    </Accordion>
+    <Accordion title = "Google Vertex" icon = "google">
+    </Accordion>
+    <Accordion title = "Google AI" icon = "google">
+    </Accordion>
+</AccordionGroup>
