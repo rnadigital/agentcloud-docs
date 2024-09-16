@@ -8,3 +8,95 @@ Datasources are the heart of Agent Cloud. Agents can only do so much using only 
 <Info> Our platform integrates with hundreds of providers, see all our possible [integrations](https://www.agentcloud.dev/integrations) or [contact us]() to suggest integration with a new one. </Info>
 
 The versatility of Agent Cloud's integrations allows agents to privately access data such as marketing analytics, sales analytics, or raw databases. This private access to your data keeps your data as yours while also allowing the agents to personalise their funcitonality to any dataset for any application. 
+
+## Datasource Form
+Allowing for many different connections means manny different ways of connecting to providers. Each one can't be covered here but the [Airbyte Docs](https://docs.airbyte.com/integrations/) provide an ability to search for any connector, take a look at it's docs and see what's required to connect Agent Cloud to your data provider.<br/>
+
+
+### Example Finding Form Values
+<Frame caption = "An example of using the linked Airbyte documentation to find form values for Apple Search Ads. You can also use the search functionlity on Airbyte to search using `crtl+k` or by clicking on the search bar on the top right">
+    ![Finding form information using airbyte docs](/images/GIFs/airbyte-integration.gif)
+</Frame>
+
+## Choosing Streams to Sync
+Once you input the required form fields, Agent Cloud will test the connection to ensure it is correctly configured and will also prompt you to select the `streams to sync`, which essentially is the field(s) of data that are required to synchronise.<br/>
+<Frame caption = "An example of the platform prompting to select which fields are to be synchronised, using BigQuery">
+    ![Title](/images/GIFs/datasources-select-sync.gif)
+</Frame>
+
+### Sync Mode
+The Sync mode is how you wish to synchronise the data. Different sync modes have different effects on how the data is transferred and stored by Agent Cloud<br/>
+- `Incremental Append` synchronises the data by only getting newely added data.<br/>
+- `Full Refresh Append` synchornises the entire datasource to synchronise <Info>Please note that this kind of synchronising can incur costs from the datasource provider and may take longer</Info> <br/>
+
+To find out what sync mode is best for you, [Learn more about sync modes here](https://docs.airbyte.com/using-airbyte/core-concepts/sync-modes/) <br/>
+
+### Primary Key
+The Primary key is the data that will be used by agents within the retrieval process, select the data that you wish to have accessed by the agents (this may be a product description, a product name etc). This will be one of the fields within your datasource.
+
+### Cursor Field
+The cursor field is the field that will be used as the reference for embedding the data. This should be a **unique** field such as `date created` or `object ID` to ensure that the data is uniuely stored within the vector database.<br/>
+<Info> Knowledge of the funcitonality of vector databases is not required for use of Agent Cloud but if you would like to understand the cursor field further, [see the Qdrnt docs here](https://qdrant.tech/documentation/concepts/points/#point-ids) </Info>
+
+### Description
+This is simply an arbitrary description of the field, this isn't used by the agents and isn't accessed, it's simply used as a descriptor for the user.<br/>
+
+
+## Configure Chunking & Embedding
+Once the datasource has been connnected and the streams to sync are configured, the embedding and chunking must be configured. Simply put, this covers the embedding process for the data and the type of retrieval to use.
+
+### Field to Embed
+This field is simply the data you wish to have the agents access, this will embed the field and put it into the vector databse for the agents to be able to access. Select the field that you wish to have acessed by the agent(s).<br/>
+
+### Embedding Model
+The process of embedding is usually done by an LLM, it is best to already have embedding models configured before starting this step of the setup but you are able to configure on within the popup by selecting the "+ Create New Model" dropdown option.<br/>
+
+If you wish you quickly continue with setup without configuring an api key for an external vendor of an LLM you _can_ use [FastEmbed](/documentation/concepts/models#fastembed).
+<Warning>Please note: FastEmbed is not as intelligent as other models, it allows for easy setup but may not be as efficient, accurate or intelligent as other models. We **strongly** reccomend changing this later</Warning>
+[Learn more about models in Agent Cloud here](/documentation/concepts/models)
+
+### Retrieval Strategy
+The retrieval strategy is the strategy used by [Agents](/documentation/concepts/Agents) to query the embedded data within the vector database. <br/>
+Different retrieval strategies have high impacts on the type of data retrieved by the agents.
+
+<AccordionGroup>
+    <Accordion title = "Self Query">
+        Self query is the process of letting the LLM generate a datasource query from the user's input prompt. This type of retrieval is particularly useful when there is a large variety of data to be queried. <br/>
+        In essence, this allows for dynamic retrieval of data when different data can represent different things.<br/>
+        `e.g.` If you are creating a 'CEO Chatbot" that can query revenue data, marketing analytics data, engineering analytics data etc... Then this is retrieval strategy will be useful in gathering relevant data based on the query.<br/>
+        >Example Query: How to get the most out of Self Query.<br/>
+        >Find all sales data where the sale is of a higher sale price than `$500` and the sale date is after `1/1/2024`
+
+        In the above example, self query will generate filtering tags based on the "sale price than $500" to filter retrieval for sales data and the price of a sale. It will also generate relevant tags for "sale date after 1/1/2024" to filter sale dates with the sales data. This achieves more accurate results from the wide range of data.
+        <Warning> Since the LLM will recursively generate a query based on it's own outputs this retrieval strategy will have higher token usage than other strategies.</Warning>
+        [Learn more about self-query](https://js.langchain.com/v0.1/docs/modules/data_connection/retrievers/self_query/)
+    </Accordion>
+    <Accordion title = "Raw Similarity Search">
+        Raw simililarity search simply embedds the user's query and finds similar objects in the vector database. This type of retrieval is more deterministic as it will simply find the most similar results for the given query but it may not work as efficiently when trying to filter data (i.e. "sales data over $x"). <br/>
+        This is particularly useful when using the datasource for retrieval of highly specific data or when token usage must be kept low as this uses significantly less tokens than self query.
+    </Accordion>
+    <Accordion title = "Multi Query">
+        Multi query is an evolution of the Raw Similarity Search retrieval. Multi Query will use the LLM to generate multiple queries based on the user's input query.<br/>
+        > CONTEXT: Datasource contains end-user "get started" and "setup" documentation for a mobile app.<br/>
+        > user: How can I set up the mobile app<br/>
+        > Multi Query: 1. What part of the documentation must I read to understand the setup of the mobile app | 2. How can I find out how to set up the mobile app | etc...<br/>
+
+        It will then do a raw similarity search on each one of these queries to gather all relevant results. Once a list of relevant results has been gathered it will return the top _k_ results from all of these results.
+
+        This is a solution that can have more accuracy in returned results than Raw Similarity Search but has less token usage than Self Query, it serves as a middle ground between the two.
+    </Accordion>
+</AccordionGroup>
+
+### Top K Results
+The top k results is the number of results to return to the chat app. If you would like this datasource to return a large amount of data then set this number higher.<br/>
+<Warning> Note: as 'k' increases in size so does the chance of returning irrelevant documents, settings this too high will result in unreliable and inaccurate results</Warning>
+
+### Schedule Type
+The synchronisation of data can happen on a manual or scheduled basis. <br/>
+- Manual requires you to click a button to update it whenever you choose.
+- Scheduled gives you the option to synchronise the datasource with Agent Cloud on an hourly, daily, weekly or monthly basis
+<Warning> Please note that frequent synchornises may incur provider costs with your datasource provider </Warning>
+
+## Advanced Features
+
+### Row Chunking
