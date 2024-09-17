@@ -199,7 +199,8 @@
       "group": "Get Started",
       "pages": [
         "documentation/get-started/introduction",
-        "documentation/get-started/quickstart"
+        "documentation/get-started/quickstart",
+        "documentation/get-started/local-setup"
       ]
     },
     {
@@ -210,27 +211,29 @@
       ]
     },
     {
-      "group": "Guides",
+      "group": "Components",
       "pages": [
-        {
-          "group": "Agent Cloud Components",
-          "pages": [
-            "documentation/concepts/agents",
-            "documentation/concepts/apps",
-            "documentation/concepts/datasources",
-            "documentation/concepts/models",
-            "documentation/concepts/sessions",
-            "documentation/concepts/tasks",
-            "documentation/concepts/tools",
-            "documentation/concepts/variables"
-          ],
-          "icon": "puzzle"
-        },
-        {
-          "group": "Tutorials With Videos",
-          "pages": ["documentation/guides/demo-chat-rag-bigquery"],
-          "icon": "play-pause"
-        }
+            "documentation/components/agents",
+            "documentation/components/apps",
+            "documentation/components/datasources",
+            "documentation/components/models",
+            "documentation/components/sessions",
+            "documentation/components/tasks",
+            "documentation/components/tools",
+            "documentation/components/variables"
+      ],
+      "icon": "puzzle-piece"
+    },
+    {
+      "group": "Tutorials & Examples",
+      "pages": [
+        "documentation/guides/demo-chat-rag-bigquery"
+      ]
+    },
+    {
+      "group": "Concepts",
+      "pages": [
+        "documentation/concepts/rag"
       ]
     },
     {

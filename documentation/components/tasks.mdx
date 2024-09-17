@@ -8,8 +8,8 @@ A Task is a start-to-finish task that's executed by an agent. They can be daisy-
 ## Task Pre-Requisites
 Tasks require the following to be configured before being able to configure a task:<br/>
 
-- [Agents](/documentation/concepts/agents)
-- [Datasources](/documentation/concepts/datasources)
+- [Agents](/documentation/components/agents)
+- [Datasources](/documentation/components/datasources)
 
 ## Task Form
 
@@ -42,9 +42,9 @@ This is the context used for the current task. Tasks are passed through and the 
 
 ### Tools
 Tool to be used by the task, if there is a required tool that isn't attached to the preferred agent then this tool can be passed through here.<br/>
-[Learn more about tools](/documentation/concepts/tools)
+[Learn more about tools](/documentation/components/tools)
 ### Datasources
-The [datasource(s)](/documentation/concepts/datasources) to be used in this tool. 
+The [datasource(s)](/documentation/components/datasources) to be used in this tool. 
 ### Preferred Agent
 The preferred agent for execution of this task, if no agent is selected then Agent Cloud will assign an agent to it.
 <Tip> It is better to create an agent where the `Goal`, `Backstory` and `Role` are specifically tailored to the task and assign it to this task. Otherwise you may have agents specialising in other topics attempting to execute a tool that they're not designed for. </Tip>

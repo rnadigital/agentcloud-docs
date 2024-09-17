@@ -4,7 +4,7 @@ icon: "User"
 description: "What are agents in Agent Cloud?"
 ---
 
-Agents are like your own personal GPTs except so much more capable. They're able to gather data from given `datasources`, use that data to pass onto each other and can either chat with a user regarding them or process the data automatically. But agents are best used together, they can be used together inside an [app](/documentation/concepts/apps) to achieve an overall larger goal. Think of an agent as a member of a team, which specific skills and a particular job to do.
+Agents are like your own personal GPTs except so much more capable. They're able to gather data from given `datasources`, use that data to pass onto each other and can either chat with a user regarding them or process the data automatically. But agents are best used together, they can be used together inside an [app](/documentation/components/apps) to achieve an overall larger goal. Think of an agent as a member of a team, which specific skills and a particular job to do.
 ## Agent Components
 Agents are compomised of a few components which will be briefly touched on here but more can be found on their respective pages.
 ### 1. System Message
@@ -61,15 +61,15 @@ Tools are a set of capabilities or functions that the agent can use to perform t
         **This tool requires an Apify api token**
     </Tab>
 </Tabs> <br/>
-See more on the [Tools](/documentation/concepts/tools) page.
+See more on the [Tools](/documentation/components/tools) page.
 
 ### 3. Datasources <Icon icon = "database"/><br/>
 Datasources are the heart of an Agent Cloud app, it's what sets our agents apart from your generic models. Agents can gather data from datasources to produce a specific output. For example, you can export all of your product data (SKU, product number, description, etc...) into Agent Cloud. Agents can then be used to not only reccomend generic products to the user ("Use an exfoliating hand cream"), but they can reccomend specific products that are stocked by you ("Use an exfoliating hand cream, xyz brand is great and we have it in stock!"). This is where the real power of Agent Cloud can be found.<br/>
-See the [Datasources](/documentation/concepts/tools) page for information on how to set up Datasources.
+See the [Datasources](/documentation/components/tools) page for information on how to set up Datasources.
 
 ### 4. Model <Icon icon="microchip"/>
 Simply put, the model is the model the agent uses as it's LLM, this may be [OpenAi's GPT](https://platform.openai.com/docs/models), or [Meta's Llama](https://llama.meta.com). Our platform supports many LLMs from multiple vendors. <br/>
-See more on the [Models](/documentation/concepts/models) page
+See more on the [Models](/documentation/components/models) page
 
 ## Advanced Features
 The following are optional features that aren't neccessary to create an agent or app but they can help with debugging agents or enhancing their capability.

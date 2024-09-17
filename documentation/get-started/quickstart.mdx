@@ -1,69 +1,41 @@
 ---
-title: "Get Started with Agent Cloud"
-sidebarTitle: "Quickstart"
+title: How to Create Your First Agent Cloud App
+sidebarTitle: Quickstart
 icon: "play"
 ---
 
-Agent Cloud is a flexible platform that lets you decide how you want to build your projects and this is the simplest way to get Agent Cloud up and running. It only takes a few minutes.
-## Setup via Docker
+Creating your first app in Agent Cloud requires setup of a few components but this guide breaks them all down and allows you to create a simple chat app. The app in this tutorial will be a `Sales Insights` chat that allows you to talk to your data and be able to analyse, read and compare your data in a simple conversation.
 
-Learn how to get Agent Cloud running locally via Docker.
+## What You Need Before Starting
+To start creating the app you only need 2 things:
+1. The sales data you'd like to analyse, this specific tutorial uses a generated example sales report within a .csv file. If you'd like to use the same example file used in this tutorial click [here]() to download it.
+<Warning> If you have data stored within one of our [integrations](), [skip to this tutorial]() to get started on creating an Agent Cloud app with an integration.</Warning>
+2. A valid OpenAI API key. Our app is BYO token, this means that you bring the token to make the calls and we do the rest. You can register for a [free key with OpenAI](https://openai.com/index/openai-api/) and get free tokens to use for this app.
 
-<AccordionGroup>
-  <Accordion icon="github" title="Clone the repository locally">
-    Open your terminal and clone the repo to your a local folder using the command below.
-    Make sure to ```cd``` into that directory.
+## Steps Overview
+If you'd like to skip this overview and go straight to the [video tutorial click here](). This serves as a generic outline to create **any** app within Agent Cloud. This skips the process of adding [tools](/documentation/components/tools)
 
-    ```git clone https://github.com/rnadigital/agentcloud.git```
+<Steps>
+    <Step title="Upload your Data">
+        Upload the data you'd like to analyse.
+    </Step>
+    <Step title="Add some models">
+        Add the specific models you'd like to use. This tutorial uses OpenAI, and that's what's reccomended for this tutorial. You should have already created an OpenAI api key.
+    </Step>
+    <Step title="Create an Agent">
+        Create the agent and input it's prompts to allow it to correctly analyse your data and answer your questions about it.
+    </Step>
+    <Step title="Create an App">
+        Finally, combine everything we've created into an app.
+    </Step>
 
-  </Accordion>
+</Steps>
 
-  <Accordion icon="docker" title="Run Docker Desktop">
-  If you don't have docker desktop you can
-  [download it here](https://www.docker.com/products/docker-desktop/)
-  </Accordion>
+<iframe src="https://drive.google.com/file/d/1AmV3vi-cSmySL1cHrOLCUw7LYRztSXua/preview" width="640" height="400" allow="fullscreen"></iframe>
+### Upload Your Data
 
-  <Accordion icon="rectangle-terminal" title="Run install.sh in terminal">
-    <Info>
-    There previously was a reliance on GCP for bucket storage. 
-    This has been removed and is now optional.
-    Files can now be accessed from Local Disk.
-    </Info>
+### Add Some Models
 
-    Follow the steps below to get started:
-    Once you are in the directory of the repo for Mac & Linux users run:
-    ```
-    chmod +x install.sh && ./install.sh
-    ```
+### Create an Agent
 
-    The script will prompt for some details, or you can pass them as command line arguments:
-
-    ```
-    ~$ ./install.sh --help
-    Usage: ./install.sh [options]
-    Options:
-        --project-id ID                  Specify the GCP project ID.
-        --service-account-json PATH      Specify the file path of your GCP service account json.
-        --gcs-bucket-name NAME           Specify the GCS bucket name to use.
-        --gcs-bucket-location LOCATION   Specify the GCS bucket location.
-        -h, --help                       Display this help message.
-    ```
-
-    Here is a sample you can use to fill in the blanks
-    ```
-    ./install.sh --project-id [INSERT PROJECT ID HERE] --service-account-json [GENERATE A SERVICE ACCOUNT IN GCP AND INSERT LOCAL PATH TO KEYFILE JSON PATH] --gcs-bucket-name [INSERT A GCP BUCKET NAME] --gcs-bucket-location [INSERT A GCP LOCATION E.G. US-CENTRAL1] --openai-api-key [INSERT KEY SK-.......]
-    ```
-
-  </Accordion>
-  <Accordion icon="desktop" title="Go to localhost:3000">
-  Once all the Docker containers are running, enter your browser and go to http://localhost:3000.
-  You will see the following page where you can enter your sign in details.
-  ![Sign Up](/images/signup-page.png)
-
-After signup you will be redirected to a sign in page where you can enter the same credentials you just used to sign up to enter the platform.
-</Accordion>
-</AccordionGroup>
-
-<Info>
-    For a detailed walkthrough of building a chat application using Agent Cloud and BigQuery, check out our [comprehensive guide](https://www.agentcloud.dev/blog/a-rag-chat-app-with-agent-cloud-and-bigquery) on the Agent Cloud blog. It will provide you with step-by-step instructions on "How to Build a RAG Chat App with Agent Cloud".
-</Info>
+### Create an App

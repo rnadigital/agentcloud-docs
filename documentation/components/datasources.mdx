@@ -36,7 +36,7 @@ The Primary key is the data that will be used by agents within the retrieval pro
 
 ### Cursor Field
 The cursor field is the field that will be used as the reference for embedding the data. This should be a **unique** field such as `date created` or `object ID` to ensure that the data is uniuely stored within the vector database.<br/>
-<Info> Knowledge of the funcitonality of vector databases is not required for use of Agent Cloud but if you would like to understand the cursor field further, [see the Qdrnt docs here](https://qdrant.tech/documentation/concepts/points/#point-ids) </Info>
+<Info> Knowledge of the funcitonality of vector databases is not required for use of Agent Cloud but if you would like to understand the cursor field further, [see the Qdrnt docs here](https://qdrant.tech/documentation/components/points/#point-ids) </Info>
 
 ### Description
 This is simply an arbitrary description of the field, this isn't used by the agents and isn't accessed, it's simply used as a descriptor for the user.<br/>
@@ -51,12 +51,12 @@ This field is simply the data you wish to have the agents access, this will embe
 ### Embedding Model
 The process of embedding is usually done by an LLM, it is best to already have embedding models configured before starting this step of the setup but you are able to configure on within the popup by selecting the "+ Create New Model" dropdown option.<br/>
 
-If you wish you quickly continue with setup without configuring an api key for an external vendor of an LLM you _can_ use [FastEmbed](/documentation/concepts/models#fastembed).
+If you wish you quickly continue with setup without configuring an api key for an external vendor of an LLM you _can_ use [FastEmbed](/documentation/components/models#fastembed).
 <Warning>Please note: FastEmbed is not as intelligent as other models, it allows for easy setup but may not be as efficient, accurate or intelligent as other models. We **strongly** reccomend changing this later</Warning>
-[Learn more about models in Agent Cloud here](/documentation/concepts/models)
+[Learn more about models in Agent Cloud here](/documentation/components/models)
 
 ### Retrieval Strategy
-The retrieval strategy is the strategy used by [Agents](/documentation/concepts/Agents) to query the embedded data within the vector database. <br/>
+The retrieval strategy is the strategy used by [Agents](/documentation/components/Agents) to query the embedded data within the vector database. <br/>
 Different retrieval strategies have high impacts on the type of data retrieved by the agents.
 
 <AccordionGroup>
