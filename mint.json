@@ -131,15 +131,15 @@
             "apidocs/docs/schema/Account",
             "apidocs/docs/schema/Agent",
             "apidocs/docs/schema/Asset",
-            "apidocs/docs/schema/BaseOpenAPIParameters",
+            "apidocs/docs/schema/BaseOpenApiParameters",
             "apidocs/docs/schema/ChatMessage",
             "apidocs/docs/schema/Crew",
             "apidocs/docs/schema/Datasource",
             "apidocs/docs/schema/DatasourceConnectionSettings",
             "apidocs/docs/schema/DatasourceRecordCount",
             "apidocs/docs/schema/DatasourceStream",
-            "apidocs/docs/schema/datasourceStatusColors",
-            "apidocs/docs/schema/dynamicResponse",
+            "apidocs/docs/schema/DatasourceStatusColors",
+            "apidocs/docs/schema/DynamicResponse",
             "apidocs/docs/schema/FieldDescription",
             "apidocs/docs/schema/FieldDescriptionMap",
             "apidocs/docs/schema/FormFieldConfig",
@@ -154,7 +154,7 @@
             "apidocs/docs/schema/NotificationType",
             "apidocs/docs/schema/ObjectId",
             "apidocs/docs/schema/OAuthStrategy",
-            "apidocs/docs/schema/OAUTH_PROVIDER",
+            "apidocs/docs/schema/Oauth_Provider",
             "apidocs/docs/schema/Org",
             "apidocs/docs/schema/ProcessingErrorDetails",
             "apidocs/docs/schema/Retriever",
@@ -199,7 +199,8 @@
       "group": "Get Started",
       "pages": [
         "documentation/get-started/introduction",
-        "documentation/get-started/quickstart"
+        "documentation/get-started/quickstart",
+        "documentation/get-started/local-setup"
       ]
     },
     {
@@ -210,13 +211,29 @@
       ]
     },
     {
-      "group": "Guides & Tutorials",
+      "group": "Components",
       "pages": [
-        "documentation/guides/structure-output",
-        {
-          "group": "RAG Examples",
-          "pages": ["documentation/guides/demo-chat-rag-bigquery"]
-        }
+            "documentation/components/agents",
+            "documentation/components/apps",
+            "documentation/components/datasources",
+            "documentation/components/models",
+            "documentation/components/sessions",
+            "documentation/components/tasks",
+            "documentation/components/tools",
+            "documentation/components/variables"
+      ],
+      "icon": "puzzle-piece"
+    },
+    {
+      "group": "Tutorials & Examples",
+      "pages": [
+        "documentation/guides/demo-chat-rag-bigquery"
+      ]
+    },
+    {
+      "group": "Concepts",
+      "pages": [
+        "documentation/concepts/rag"
       ]
     },
     {

@@ -1,0 +1,64 @@
+---
+title: "Tasks"
+icon: "pen-to-square"
+description: "What are Tasks in Agent Cloud?"
+---
+<Warning>
+  🚧 These docs are still under construction. Reach out on [Discord](https://discord.com/invite/ZNSSttKqqq) if you'd like more information on anything about Agent Cloud.
+</Warning>
+A Task is a start-to-finish task that's executed by an agent. They can be daisy-chained to have the output of one or multiple tasks be the input to tasks.
+## Task Pre-Requisites
+Tasks require the following to be configured before being able to configure a task:<br/>
+
+- [Agents](/documentation/components/agents)
+- [Datasources](/documentation/components/datasources)
+
+## Task Form
+
+### Name
+This is a simple arbitrary name for the task, this isn't passed to the agent(s).
+
+### Task Description
+A clear, concise statement of what the task entails. This is given to the agent as a prompt of what to do. This should explain to the agent what they are assigned to do within this task.
+
+>E.g:
+> Find and summarise the latest and most relevant news on AI
+
+###  Expected output
+A detailed description of what the task's completion looks like and what the final result should be.
+
+<Tabs>
+    <Tab title = "Expected Output">
+        This is a text representation of the task output.
+        >E.g:
+        >"A bullet list summary of the top 5 most important AI news."
+    </Tab>
+    <Tab title = "Structured Output">
+        Structured output takes in a schema and forces the agent to conform it's output to the schema. This is particularly useful when expecting a response with a very specific format. See [Structured Output schema](/documentation/guides/structure-output) for more information
+    </Tab>
+</Tabs>
+[Learn more about expected output](https://docs.crewai.com/core-concepts/Tasks/?h=task#task-output)
+
+### Context
+This is the context used for the current task. Tasks are passed through and the output of these tasks is used as the input of this task. This allows you to specialise tasks to a specific objective. This abstraction of task functionality allows for more detailed and accurate overall outputs as each task has a specific goal.
+
+### Tools
+Tool to be used by the task, if there is a required tool that isn't attached to the preferred agent then this tool can be passed through here.<br/>
+[Learn more about tools](/documentation/components/tools)
+### Datasources
+The [datasource(s)](/documentation/components/datasources) to be used in this tool. 
+### Preferred Agent
+The preferred agent for execution of this task, if no agent is selected then Agent Cloud will assign an agent to it.
+<Tip> It is better to create an agent where the `Goal`, `Backstory` and `Role` are specifically tailored to the task and assign it to this task. Otherwise you may have agents specialising in other topics attempting to execute a tool that they're not designed for. </Tip>
+
+### Human Input
+After the execution of the task, there may need to be a human input to finalise the completion of the task or to ask the user for more information of some kind. This is used to specify if human input should be used. This input is used for the next task in the app.
+
+
+
+
+## Advanced Options
+
+### Display Only Final Output
+
+### Store Task Output

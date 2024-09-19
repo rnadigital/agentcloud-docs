@@ -1,0 +1,70 @@
+---
+title: "Models"
+icon: "microchip"
+description: "What are Models in Agent Cloud?"
+---
+<Warning>
+  🚧 These docs are still under construction. Reach out on [Discord](https://discord.com/invite/ZNSSttKqqq) if you'd like more information on anything about Agent Cloud.
+</Warning>
+Models attach to an agent to specify the specific model and provider the agent will be using. Models are also used in Datasources to embed data, to learn more about embedding visit the [Datasources](documentation/components/datasources) page.
+
+<Warning> In short, embedding is the process of turning data of any type into data that agents can process and understand. There are models specific for embedding and these should **not** be used for agents. </Warning>
+
+When you first register for the [cloud](https://app.agentcloud.dev/register) platform you will be prompted to configure a simple OpenAI GPT model, if you've already done this then there is no need to configure more unless you intend to use multiple agents.
+## Model Components
+Models don't require much to set up, all that's required is a valid api key for the selected model to allow the platform to access the selected LLM.
+The model you choose depends on a variety of factors including token budget, datasource size (for embedding), task complexity and more. **maybe more info on model selection?**
+### Vendor
+Select your vendor, we support a range of model vendors, select one and configure it accordingly. Different vendors require different configuration for their models. Below is our current list of supported vendors:<br/>
+
+<AccordionGroup>
+
+    <Accordion title = "OpenAI" icon = "">
+        Setup for an OpenAI model is very straightforward, all that's required is a valid OpenAI `api key`.<br/>
+        These are the following _agent_ compatible models we support:
+        - `gpt-4o-mini`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4o-mini) <br/>
+        - `gpt-4o`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4o)<br/>
+        - `gpt-4-turbo`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4) <br/>
+        - `gpt-4`. Read more about it [here](https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4) <br/>
+
+        These are the following _embedding_ models we support:<br/>
+        - `text-embedding-3-small`. Read more about it [here](https://platform.openai.com/docs/models/embeddings) <br/>
+        - `text-embedding-3-large`. Read more about it [here](https://platform.openai.com/docs/models/embeddings) <br/>
+        - `text-embedding-ada-002`. Read more about it [here](https://platform.openai.com/docs/models/embeddings) <br/>
+    </Accordion>
+
+    <Accordion title = "Azure OpenAI" icon = "microsoft">
+        Need someone to explain to me how azure openai works
+    </Accordion>
+
+    <Accordion title = "Anthropic" icon = "">
+        Similar to OpenAI, Anthropic setup only requires a valid Anthropic `api key`.<br/>
+        These are the follwoing _agent_ compatible models we support:<br/>
+        - `claude-3-5-sonnet-20240620`. Read more about it [here](https://docs.anthropic.com/en/docs/intro-to-claude#claude-3-5-family) <br/>
+        - `claude-3-sonnet-20240229`. Read more about it [here](https://docs.anthropic.com/en/docs/intro-to-claude#claude-3-family) <br/>
+        - `claude-3-haiku-2024307`. Read more about it [here](https://docs.anthropic.com/en/docs/intro-to-claude#claude-3-family) <br/>
+        - `claude-3-opus-20240229`. Read more about it [here](https://docs.anthropic.com/en/docs/intro-to-claude#claude-3-family) <br/>
+    </Accordion>
+    <Accordion title = "Ollama" icon = "meta">
+        **Need someone to explain how Ollama locally works**
+    </Accordion>
+    <Accordion title = "FastEmbed" icon = "">
+        FastEmbed is a library provided by Qdrant to allow for easy embedding of data, it requires no api key an you simply select the model to use.<br/>
+        You can read more about FastEmbed [here](https://qdrant.tech/documentation/fastembed/)<br/>
+        We support the following _embedding_ models:<br/>
+        - `fast-bge-small-en`<br/>
+        - `fast-bge-base-en`<br/>
+        - `fast-all-MiniLM-L6-v2`<br/>
+        - `fast-multilingual-e5-large`<br/>
+    </Accordion>
+    <Accordion title = "Groq" icon = "">
+        **Need someone to explain Groq to me**
+    </Accordion>
+    <Accordion title = "Google Vertex" icon = "google">
+        <Info>Google Vertex is an advanced platform and model to use, if you are new to Agent Cloud we reccomend using another model</Info>
+        Google Vertex is a platform that allows you to train your own models using Machine Learning<br/>
+        Lean more about Google Vertex [here](https://cloud.google.com/vertex-ai/docs/start/introduction-unified-platform)
+    </Accordion>
+    <Accordion title = "Google AI" icon = "google">
+    </Accordion>
+</AccordionGroup>
