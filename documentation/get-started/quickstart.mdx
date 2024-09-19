@@ -2,6 +2,7 @@
 title: How to Create Your First Agent Cloud App
 sidebarTitle: Quickstart
 icon: "play"
+mode: "wide"
 ---
 
 Creating your first app in Agent Cloud requires setup of a few components but this guide breaks them all down and allows you to create a simple chat app. The app in this tutorial will be a `Sales Insights` chat that allows you to talk to your data and be able to analyse, read and compare your data in a simple conversation.
@@ -13,14 +14,17 @@ To start creating the app you only need 2 things:
 2. A valid OpenAI API key. Our app is BYO token, this means that you bring the token to make the calls and we do the rest. You can register for a [free key with OpenAI](https://openai.com/index/openai-api/) and get free tokens to use for this app.
 
 ## Steps Overview
-If you'd like to skip this overview and go straight to the [video tutorial click here](/documentation/get-started/quickstart#app-showcase). This serves as a generic outline to create **any** app within Agent Cloud. This skips the process of adding [tools](/documentation/components/tools)
+If you'd like to skip this overview and go straight to the [video tutorial click here](/documentation/get-started/quickstart#app-showcase). This serves as a generic outline to create **any** app within Agent Cloud. 
+<Note>
+    Please note, this tutorial skips the process of adding [tools](/documentation/components/tools). If you'd like to create an app with tools see our [tutorials here]()
+</Note>
 
 <Steps>
-    <Step title="Upload your Data">
-        Upload the data you'd like to analyse.
-    </Step>
     <Step title="Add some models">
         Add the specific models you'd like to use. This tutorial uses OpenAI, and that's what's reccomended for this tutorial. You should have already created an OpenAI api key.
+    </Step>
+    <Step title="Upload your Data">
+        Upload the data you'd like to analyse.
     </Step>
     <Step title="Create an Agent">
         Create the agent and input it's prompts to allow it to correctly analyse your data and answer your questions about it.
@@ -32,18 +36,53 @@ If you'd like to skip this overview and go straight to the [video tutorial click
 </Steps>
 
 ### App Showcase
+
 <Frame caption="Video example of the app to be created in this tutorial">
     <iframe src="https://drive.google.com/file/d/1i6DqlTC-DnvSxVlYoHQHz4Nhn-CEZAXb/preview" width="640" height="480" allow="fullscreen"></iframe>
 </Frame>
+With Agent Cloud chat apps, you can talk to your data and lean on the power of AI to make infrences on the data and intrepet it.
+<AccordionGroup>
+    <Accordion title = "Talk to your data" icon = "comment">
+        Once configured you can use apps to discuss the data with agents, you can easily get data, use the agents to intrepet it or using Process Apps you can modify it and automate processes using AI.
+    </Accordion>
+    <Accordion title = "Discover more about your data" icon = "square-question">
+        Using the model's traning data, it can use that to make infrences on your given data allowing you to use AI to find out more about it.
+    </Accordion>
+    <Accordion title = "Keep your data private" icon = "key">
+        When uploading your data to AI chats you agree to give your data over to them for use in training. With Agent Cloud you host your own data and it stays yours.
+    </Accordion>
+</AccordionGroup>
+
 ### Add Some Models
+
 <Frame caption="Tutorial on how to add basic models.">
-    <iframe src="https://drive.google.com/file/d/1Gk5NbgtcoAk-iiQ3Q_ghc7Ap-SvRPzWx/preview" width="640" height="480" allow="fullscreen"></iframe>
+    <iframe src="https://drive.google.com/file/d/1Gk5NbgtcoAk-iiQ3Q_ghc7Ap-SvRPzWx/preview" width="840" height="480" allow="fullscreen"></iframe>
 </Frame>
+The first step is you add models, for this tutorial we will create two. These will be used to embed the data and act as the base LLM for the agent we will create. You can read more about models on our [Models](/documentation/components/models) page.
+
+<AccordionGroup>
+    <Accordion title = "Create Embedding Model" icon = "table">
+        The embedding model will take the raw data that we upload and turn it into vectors in a vectorstore. Vectors are forms of data that agents can more easily read and can draw from. The core concept of vectorstores and vectors isn't a pre requisite to use of Agent Cloud. But, as this is a complex process it must be done by an existing LLM. Just like OpenAI have GPT, they also have embedding models. These are what's used to embed your data.
+
+        For this tutorial, we will select `OpenAI` and their `text-embedding-3-small` model.
+    </Accordion>
+    <Accordion title = "Create Agent Model" icon = "User">
+        The agent model is a lot simpler than the embedding model, it is simply the brains behind the agent we will create in later steps.
+
+        For this tutorial, we will select `OpenAI` and their `GPT4o` model.
+    </Accordion>
+</AccordionGroup>
+
+<Note>
+    For performance we **strongly** reccomend using OpenAI and the specific models outlined in the accordions. If you haven't already you should [create an OpenAI api key](https://platform.openai.com/api-keys) and use that key in the "Api key" field of the model form
+</Note>
 
 ### Upload Your Data
 <Frame caption="Tutorial on simple file uploads for data.">
     <iframe src="https://drive.google.com/file/d/1WR7gTPnkVlTmPdH9M4NSeVz0O6lNr9E1/preview" width="640" height="480" allow="fullscreen"></iframe>
 </Frame>
+This specific tutorial focuses on **file upload** as a data source. To do this, navigate to the `Data Sources` page and either drag the file into the box or click into it to select a file.
+
 
 ### Create an Agent
 <Frame caption="Tutorial on simple agent creation.">
