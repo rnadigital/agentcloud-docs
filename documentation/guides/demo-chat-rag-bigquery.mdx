@@ -56,7 +56,7 @@ Go to the `/datasources` screen, select New Connection and add a Bigquery data s
 <AccordionGroup>
   <Accordion icon="wrench" title="Provide a name and sync schedule">
   Provide a name and sync schedule for the data source. Select `Manual` for now.
-    <Warning>For now, syncs configured via Agent Cloud, will sync all data from the source everytime. In airbyte terms this is called a `full refresh - overwrite`. We still need to enable other refresh options such as `Incremental - Append` or `Full Refresh - Append` in future versions, which will only sync new data via a provided cursor field (such as create date field). You can [read more about it here](https://docs.airbyte.com/using-airbyte/core-concepts/sync-modes/) </Warning>
+    <Tip>For now, syncs configured via Agent Cloud, will sync all data from the source everytime. In airbyte terms this is called a `full refresh - overwrite`. We still need to enable other refresh options such as `Incremental - Append` or `Full Refresh - Append` in future versions, which will only sync new data via a provided cursor field (such as create date field). You can [read more about it here](https://docs.airbyte.com/using-airbyte/core-concepts/sync-modes/) </Tip>
   </Accordion>
 
   <Accordion icon="key" title="Provide Data Source Credentials">
