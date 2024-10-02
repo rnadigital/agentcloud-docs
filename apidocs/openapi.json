@@ -187,7 +187,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -272,7 +272,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -347,7 +347,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -556,7 +556,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -636,7 +636,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -711,7 +711,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -917,7 +917,7 @@
           "content": {
             "dynamicResponse": {
               "schema": {
-                "$ref": "#/components/schemas/tempRedirectResponse"
+                "$ref": "#/components/schemas/tempRedirectResponseJSON"
               }
             }
           }
@@ -998,7 +998,7 @@
           "content": {
             "dynamicResponse": {
               "schema": {
-              "$ref": "#/components/schemas/tempRedirectResponse"
+              "$ref": "#/components/schemas/tempRedirectResponseJSON"
               }
             }
           }
@@ -1068,7 +1068,7 @@
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
                 }
               }
             }
@@ -1254,7 +1254,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -1335,7 +1335,7 @@
             "content": {
               "dynamicResponse": {
                 "schema": {
-                "$ref": "#/components/schemas/tempRedirectResponse"
+                "$ref": "#/components/schemas/tempRedirectResponseJSON"
                 }
               }
             }
@@ -1405,7 +1405,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -1707,7 +1707,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -1777,7 +1777,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -1847,7 +1847,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -2454,7 +2454,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -2524,7 +2524,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -2594,7 +2594,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -2679,8 +2679,8 @@
           }
         }
       },
-      "tempRedirectResponse":{
-        "description": "Server response after successsfully adding a new object",
+      "tempRedirectResponseJSON":{
+        "description": "Server response when attempting a redirect, redirects are handled internally by AgentCloud and as such a redirect response is identified with a 200 code and a redirect property that holds the redirect link",
         "properties": {
           "_id":{
             "type": "string",
@@ -2691,6 +2691,18 @@
             "description": "a string containing the redirect link to get all objects after a successful insertion."
           }
         }
+      },
+      "invalidPermissionsResponseJSON" : {
+        "description": "Server response when incorrect permissions are used to execute an operation",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A short message detailing the specific error"
+          }
+        }
+      },
+      "successfullyAddedObjectResponseJSON": {
+        "description": "Server response when an object is successfully added or modified"
       },
       "Session":{
         "description": "Session object used when a chat app is running",
