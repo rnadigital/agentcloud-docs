@@ -52,16 +52,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
             "content": {
@@ -122,16 +122,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
             "content": {
@@ -187,7 +187,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -203,15 +203,15 @@
 						}
 					},
           "403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "500": {
 						"description": "Internal error",
 						"content": {
@@ -272,7 +272,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -288,15 +288,15 @@
 						}
 					},
           "403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "500": {
 						"description": "Internal error",
 						"content": {
@@ -347,7 +347,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -363,15 +363,15 @@
 						}
 					},
           "403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "500": {
 						"description": "Internal error",
 						"content": {
@@ -416,16 +416,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
             "content": {
@@ -490,16 +490,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
             "content": {
@@ -556,21 +556,21 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
 						"content": {
@@ -636,21 +636,21 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
 						"content": {
@@ -711,7 +711,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -727,15 +727,15 @@
 						}
 					},
           "403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "500": {
 						"description": "Internal error",
 						"content": {
@@ -780,16 +780,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a tool outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
             "content": {
@@ -850,16 +850,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access an object outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Invalid toolIds, modelIds or function calling modelIds. The content will contain an error message which will detail which field is incorrect.",
             "content": {
@@ -917,7 +917,7 @@
           "content": {
             "dynamicResponse": {
               "schema": {
-                "$ref": "#/components/schemas/tempRedirectResponse"
+                "$ref": "#/components/schemas/tempRedirectResponseJSON"
               }
             }
           }
@@ -933,11 +933,11 @@
           }
         },
         "403": {
-          "description": "Invalid permissions on the resourceSlug, attempting to access a resource outside the permissions of the team.",
+          "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
           "content": {
             "dynamicResponse": {
               "schema": {
-                "$ref": "#/components/schemas/dynamicResponse"
+                "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
               }
             }
           }
@@ -998,7 +998,7 @@
           "content": {
             "dynamicResponse": {
               "schema": {
-              "$ref": "#/components/schemas/tempRedirectResponse"
+              "$ref": "#/components/schemas/tempRedirectResponseJSON"
               }
             }
           }
@@ -1014,11 +1014,11 @@
           }
         },
         "403": {
-          "description": "Invalid permissions on the resourceSlug, attempting to edit a tool outside the permissions of the team.",
+          "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
           "content": {
             "dynamicResponse": {
               "schema": {
-                "$ref": "#/components/schemas/dynamicResponse"
+                "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
               }
             }
           }
@@ -1068,7 +1068,7 @@
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
                 }
               }
             }
@@ -1084,11 +1084,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to delete a tool outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1138,11 +1138,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to access models outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1198,11 +1198,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to access a model outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1254,7 +1254,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -1270,11 +1270,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to add a model outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1335,7 +1335,7 @@
             "content": {
               "dynamicResponse": {
                 "schema": {
-                "$ref": "#/components/schemas/tempRedirectResponse"
+                "$ref": "#/components/schemas/tempRedirectResponseJSON"
                 }
               }
             }
@@ -1351,11 +1351,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to edit a model outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1405,7 +1405,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -1425,7 +1425,7 @@
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1487,11 +1487,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to access models outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1559,11 +1559,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to access a datasource outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -1640,16 +1640,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug.",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error when testing validity of datasource, check the error message to see specifically what validation failed.",
 						"content": {
@@ -1707,21 +1707,21 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error validating datasource, check error message for more information.",
 						"content": {
@@ -1777,21 +1777,21 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error validating datasource, check error message for more information.",
 						"content": {
@@ -1847,21 +1847,21 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                 "$ref": "#/components/schemas/tempRedirectResponse"
+                 "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error validating datasource, check error message for more information.",
 						"content": {
@@ -1921,16 +1921,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid Permissions on the resourceSlug, attempting to access a task outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error validating datasource, check error message for more information.",
 						"content": {
@@ -2023,16 +2023,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error in validation, check error message for more information",
             "content": {
@@ -2131,16 +2131,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error in validation, check error message for more information",
             "content": {
@@ -2204,16 +2204,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error in validation, check error message for more information",
             "content": {
@@ -2283,16 +2283,16 @@
 							}
 						}
 					},
-					"403": {
-						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error in validation, check error message for more information",
             "content": {
@@ -2387,16 +2387,16 @@
 							}
 						}
           },
-					"403": {
-						"description": "Invalid permissions on the resourceSlug, attempting to access an agent outside the permissions of the team",
-						"content": {
-							"dynamicResponse":{
-                "schema":{
-                  "$ref": "#/components/schemas/dynamicResponse"
+          "403": {
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
+            "content": {
+              "dynamicResponse": {
+                "schema": {
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
-						}
-					},
+            }
+          },
           "400": {
             "description": "Error in validation, check error message for more information",
             "content": {
@@ -2454,7 +2454,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -2470,11 +2470,11 @@
             }
           },
           "403": {
-            "description": "Invalid permissions on the resourceSlug, attempting to add a model outside the permissions of the team.",
+            "description": "Invalid permissions on the resourceSlug, attempting to delete a model outside the permissions of the team.",
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -2524,7 +2524,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -2544,7 +2544,7 @@
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -2594,7 +2594,7 @@
 						"content": {
 							"dynamicResponse": {
 								"schema": {
-                  "$ref": "#/components/schemas/tempRedirectResponse"
+                  "$ref": "#/components/schemas/tempRedirectResponseJSON"
 								}
 							}
 						}
@@ -2614,7 +2614,7 @@
             "content": {
               "dynamicResponse": {
                 "schema": {
-                  "$ref": "#/components/schemas/dynamicResponse"
+                  "$ref": "#/components/schemas/invalidPermissionsResponseJSON"
                 }
               }
             }
@@ -2679,8 +2679,8 @@
           }
         }
       },
-      "tempRedirectResponse":{
-        "description": "Server response after successsfully adding a new object",
+      "tempRedirectResponseJSON":{
+        "description": "Server response when attempting a redirect, redirects are handled internally by AgentCloud and as such a redirect response is identified with a 200 code and a redirect property that holds the redirect link",
         "properties": {
           "_id":{
             "type": "string",
@@ -2691,6 +2691,18 @@
             "description": "a string containing the redirect link to get all objects after a successful insertion."
           }
         }
+      },
+      "invalidPermissionsResponseJSON" : {
+        "description": "Server response when incorrect permissions are used to execute an operation. These permissions can be either plan based permissions (can't add more users on your current plan), user level permissions (can't add models without being a team_admin) or resourceSlug permissions (attempting to create a new agent/model/task/etc... to a team you haven't been invited to.",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A short message detailing the specific error"
+          }
+        }
+      },
+      "successfullyAddedObjectResponseJSON": {
+        "description": "Server response when an object is successfully added or modified"
       },
       "Session":{
         "description": "Session object used when a chat app is running",
